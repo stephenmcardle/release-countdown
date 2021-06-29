@@ -11,8 +11,3 @@ body {
 canvas {
   display: block;
 }
-
-#countdown {
-  position: absolute;
-  z-index: 1;
-}
