@@ -171,7 +171,7 @@ function mouseMoved() {
 }
 
 function mouseClicked() {
-  if (isCursorInRectangle) {
+  if (isCursorInRectangle()) {
     window.location = "https://artblocks.io/project/101";
   }
 }
