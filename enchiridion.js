@@ -104,7 +104,11 @@ function draw() {
   push();
   strokeWeight(three);
   rectMode(CENTER);
-  fill(0, 200);
+  if (isCursorInRectangle()) {
+    fill(20, 200);
+  } else {
+    fill(0, 200);
+  }
   rect(0, 0, width / 3, height / 4);
   pop();
   strokeWeight(one);
@@ -122,6 +126,7 @@ function draw() {
     textSize(twenty + ten);
     text("LIVE", 0, oneHundred / 2);
   }
+  textSize();
   pop();
 }
 
@@ -146,6 +151,29 @@ function msToTime(ms) {
   } ${minutes} Minute${minutes === 1 ? "" : "s"} ${seconds} Second${
     seconds === 1 ? "" : "s"
   }`;
+}
+
+function isCursorInRectangle() {
+  return (
+    mouseX > width / 3 &&
+    mouseX < (width * 2) / 3 &&
+    mouseY > (height * 3) / 8 &&
+    mouseY < (height * 5) / 8
+  );
+}
+
+function mouseMoved() {
+  if (isCursorInRectangle()) {
+    cursor(HAND);
+  } else {
+    cursor(ARROW);
+  }
+}
+
+function mouseClicked() {
+  if (isCursorInRectangle) {
+    window.location = "https://artblocks.io/project/101";
+  }
 }
 
 function createFleet(id, fleetWidth, fleetHeight, x, y) {
