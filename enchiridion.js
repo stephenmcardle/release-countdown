@@ -82,7 +82,6 @@ function setup() {
     x + five,
     y + five
   );
-  // noLoop();
 }
 
 function draw() {
@@ -114,7 +113,7 @@ function draw() {
   fill(255);
   textSize(oneHundred / 3);
   text("Enchiridion", 0, -oneHundred / 3);
-  textSize(ten);
+  textSize(ten + two);
   text("July 5th 12:00 EDT", 0, -ten);
   text("256 mints @ .08 ETH", 0, ten);
   if (diff > 0) {
