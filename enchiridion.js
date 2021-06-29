@@ -17,12 +17,10 @@ let globalStyles;
 
 let rectangles;
 
-// let cantarell_bold;
-// function preload() {
-//   cantarell_bold = loadFont(
-//     "https://fonts.googleapis.com/css2?family=Cantarell:wght@700&display=swap"
-//   );
-// }
+let cantarell_bold;
+function preload() {
+  cantarell_bold = loadFont("assets/Cantarell-Bold.otf");
+}
 
 function genTokenData(projectNum) {
   let data = {};
@@ -51,7 +49,7 @@ function setup() {
   canvas.height = 200;
   background(0);
   ctx = canvas.drawingContext;
-  // textFont(cantarell_bold);
+  textFont(cantarell_bold);
 
   // Relative values based on 1080x1080 canvas
   one = width / 1080;
