@@ -47,6 +47,8 @@ function setup() {
   noiseSeed(seed);
   styles = new Styles();
   canvas = createCanvas(window.innerWidth, window.innerHeight);
+  canvas.width = 200;
+  canvas.height = 200;
   background(0);
   ctx = canvas.drawingContext;
   // textFont(cantarell_bold);
@@ -82,6 +84,7 @@ function setup() {
     x + five,
     y + five
   );
+  // noLoop();
 }
 
 function draw() {
@@ -89,9 +92,12 @@ function draw() {
   const diff = release - moment.now();
   const time = msToTime(diff);
   background(0);
+  push();
+  translate(fleets[0].x, fleets[0].y);
   rectangles.forEach((rct) => {
     rct.show();
   });
+  pop();
   push();
   stroke(255);
   translate(width / 2, height / 2);
@@ -109,18 +115,14 @@ function draw() {
   textSize(ten);
   text("July 5th 12:00 EDT", 0, -ten);
   text("256 mints @ .08 ETH", 0, ten);
-  textSize(ten + five);
-  text(time, 0, oneHundred / 2 - ten);
+  if (diff > 0) {
+    textSize(ten + five);
+    text(time, 0, oneHundred / 2);
+  } else {
+    textSize(twenty + ten);
+    text("LIVE", 0, oneHundred / 2);
+  }
   pop();
-}
-
-async function update() {
-  const elem = document.getElementById("countdown");
-  const release = moment("2021-07-05T12:00:00-04:00");
-  const diff = release - moment.now();
-  elem.innerHTML = msToTime(diff);
-  await sleep(1000);
-  update();
 }
 
 const d = 1000 * 60 * 60 * 24;
@@ -129,6 +131,9 @@ const m = 1000 * 60;
 const s = 1000;
 
 function msToTime(ms) {
+  if (ms <= 0) {
+    return null;
+  }
   const days = Math.floor(ms / d);
   ms -= days * d;
   const hours = Math.floor(ms / h);
